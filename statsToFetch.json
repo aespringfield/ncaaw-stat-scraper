@@ -1,0 +1,25 @@
+[
+    {
+        "NAME": "POINTS",
+        "SUBSTATS": ["TOTAL_POINTS", "POINTS_PER_GAME"],
+        "MAX_PAGES": 10
+    },
+    {
+        "NAME": "FREE_THROW_ATTEMPTS"
+    },
+    {
+        "NAME": "ASSISTS_PER_GAME"
+    },
+    {
+        "NAME": "REBOUNDS_PER_GAME"
+    },
+    {
+        "NAME": "THREES",
+        "SUBSTATS": ["THREE_PERCENTAGE", "THREES_MADE"]
+    },
+    {
+        "NAME": "FIELD_GOALS",
+        "SUBSTATS": ["FIELD_GOAL_ATTEMPTS", "FIELD_GOAL_PERCENTAGE"],
+        "MAX_PAGES": 7
+    }
+]
