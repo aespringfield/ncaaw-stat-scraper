@@ -1,7 +1,16 @@
 const fs = require('fs');
+const _ = require('lodash');
 const readline = require('readline');
 const { google } = require('googleapis');
 require('dotenv').config();
+
+const request = require('request');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+const STAT_INFO = require('./routeNumbers');
+const STATS_TO_FETCH = require('./statsToFetch');
+const { grabbedData } = require('./grabbedData');
+const BASE_ROUTE = 'https://www.ncaa.com/stats/basketball-women/d1/current/individual';
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
@@ -22,68 +31,37 @@ function readPlayers() {
         })
     });
 }
-// const { grabbedData } = require('./grabbedData');
 
 
-function writePlayers(players) {
+function writePlayers(players, stats) {
+    const { range, resource } = buildSheetValues(players, stats);
     fs.readFile('credentials.json', (err, content) => {
         authorize(JSON.parse(content), (response) => {
-            setPlayerData(response, players);
+            setPlayerData(response, range, resource);
         });
     });
 }
 
-readPlayers().then((players) => {
-    console.log('players:', players),
-    console.log('*******')
-    addStatToPlayers(players, 'POINTS_PER_GAME', 'PPG')
-        .then((players) => {
-            console.log('ASSISTS_PER_GAME')
-            return addStatToPlayers(players, 'ASSISTS_PER_GAME', 'APG')
-        })
-        .then((players) => {
-            console.log('FIELD_GOAL_PERCENTAGE')
-            return addStatToPlayers(players, 'FIELD_GOAL_PERCENTAGE', 'FG%')
-        })
-        .then((players) => {
-            console.log('REBOUNDS_PER_GAME')
-            return addStatToPlayers(players, 'REBOUNDS_PER_GAME', 'RPG')
-        })
-        .then((players) => {
-            console.log('THREES_MADE')
-            return addStatToPlayers(players, 'THREES_MADE', '3FG', 3)
-        })
-        .then((players) => {
-            console.log('THREE_PERCENTAGE',)
-            return addStatToPlayers(players, 'THREE_PERCENTAGE', '3FG%')
-        })
-        .then((players) => {
-            console.log('STEALS_PER_GAME')
-            return addStatToPlayers(players, 'STEALS_PER_GAME', 'SPG')
-        })
-        .then((players) => {
-            console.log('players:', players)
-            console.log('writing players')
-            writePlayers(players);
-        })
+function addStatsToPlayers(players, stats) {
+    return new Promise((resolve, reject) => {
+        const { NAME: parentStat, MAX_PAGES, SUBSTATS } = stats[0];
+        resolve(addStatToPlayers(players, parentStat, MAX_PAGES, SUBSTATS));
+    }).then((players) => {
+        const statsLeft = stats.slice(1);
+        return statsLeft.length > 0 ? addStatsToPlayers(players, statsLeft) : players;
     });
+}
 
-// writePlayers(grabbedData);
+readPlayers().then((players) => {
+    addStatsToPlayers(players, STATS_TO_FETCH)
+    .then((players) => {
+        console.log('players:', players)
+        console.log('writing players')    
+        writePlayers(players, STAT_INFO); 
+    })
+})
 
-
-// // Load client secrets from a local file.
-// fs.readFile('credentials.json', (err, content) => {
-//   if (err) return console.log('Error loading client secret file:', err);
-//   // Authorize a client with credentials, then call the Google Sheets API.
-//   authorize(JSON.parse(content), (response) => {
-//     listPlayers(response).then(
-//     });
-//   });
-
-// uncomment to post to sheet
-//   authorize(JSON.parse(content), setPlayerData);
-//   getStatFor('ASSISTS_PER_GAME');
-// });
+// writePlayers(grabbedData, STAT_INFO);
 
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -153,8 +131,7 @@ function listPlayers(auth) {
           const players = [];
           rows.map((row) => {
             players.push({
-                name: row[0].trim(),
-                school: row[1].trim()
+                name: row[0].trim()
             });
           });
           resolve(players);
@@ -165,84 +142,78 @@ function listPlayers(auth) {
   });
 }
 
-function addStatToPlayers(players, statName, statAbbrev, maxPages) {
+function addStatToPlayers(players, parentStat, maxPages, substats) {
     return new Promise((resolve, reject) => {
-        getStatFor(statName, maxPages).then((response, error) => {
+        console.log('Stat:', parentStat);
+        getStatFor(parentStat, maxPages).then((response, error) => {
             const newPlayers = players.map((player) => {
-                const stat = response.reduce((memo, responsePlayer) => {
+                return response.reduce((newPlayer, responsePlayer) => {
                     if (responsePlayer.Name.trim() === player.name) {
-                        memo = responsePlayer[statAbbrev];
+                        const stats = substats ? substats : [parentStat];
+                        stats.forEach((stat) => {
+                            newPlayer[stat] = responsePlayer[STAT_INFO[stat].STAT_ABBREV];
+                        });
                     }
-                    return memo;
-                }, null);
-
-                if (stat) {
-                    player[statName] = stat;
-                }
-
-                return player;
+                    return newPlayer;
+                }, {...player});
             });
             resolve(newPlayers);
         })
         .catch((error) => {
             console.log('error', error);
-            resolve(addStatToPlayers(players, statName, statAbbrev, maxPages))
+            resolve(addStatToPlayers(players, statName, maxPages))
             // reject(error);
         });
     });
 }
 
-function setPlayerData(auth, players) {
+function buildSheetValues(players, statsInfo) {
+    const sortedStats = Object.entries(statsInfo)
+    .filter(([statName, statInfo]) => {
+        return statInfo.ANNA_COLUMN;
+    })
+    .sort(([statNameA, statInfoA], [statNameB, statInfoB]) => {
+        return statInfoA.ANNA_COLUMN < statInfoB.ANNA_COLUMN ? -1 : 1;
+    });
+
+    const values = sortedStats.map(([statName, statInfo]) => {
+        return [statInfo.ANNA_COLUMN_NAME].concat(
+            players.map((player) => {
+                return player[statName] || null;
+            })
+        );
+    });
+    return {
+        range: `Sheet1!${sortedStats[0][1].ANNA_COLUMN}1:${_.last(sortedStats)[1].ANNA_COLUMN}${players.length + 1}`,
+        resource: {
+            "majorDimension": "COLUMNS",
+            "values": values
+        }
+    };
+}
+
+function setPlayerData(auth, range, resource) {
     const sheets = google.sheets({version: 'v4', auth});
     const sheetId = process.env.SENIORS_SHEET_ID
     sheets.spreadsheets.values.update({
         spreadsheetId: sheetId,
-        range: 'Sheet1!D1:J33',
         valueInputOption: 'USER_ENTERED',
-        resource: {
-            "majorDimension": "COLUMNS",
-            "values": [
-              ['Points per game'].concat(players.map((player) => {
-                return player.POINTS_PER_GAME;
-              })),
-              ['Field goal %'].concat(players.map((player) => {
-                return player.FIELD_GOAL_PERCENTAGE;
-              })),
-              ['Threes made'].concat(players.map((player) => {
-                return player.THREES_MADE;
-              })),
-              ['Three %'].concat(players.map((player) => {
-                return player.THREE_PERCENTAGE;
-              })),
-              ['Rebounds per game'].concat(players.map((player) => {
-                return player.REBOUNDS_PER_GAME;
-              })),
-              ['Assists per game'].concat(players.map((player) => {
-                return player.ASSISTS_PER_GAME;
-              })),
-            //   ['Steals per game'].concat(players.map((player) => {
-            //     return player.STEALS_PER_GAME;
-            //   })),
-            ],
-          }
+        range,
+        resource
     }, (err, res) => {
         if (err) return console.log('The API returned an error on update: ' + err);
-        const responseData = res;
         console.log('response data', res.data);
     });
 }
 
-
-const request = require('request');
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
-const ROUTE_NUMBERS = require('./routeNumbers');
-const BASE_ROUTE = 'https://www.ncaa.com/stats/basketball-women/d1/current/individual';
-
 function getStatFor(stat, maxPages=5, players=[], page=null) {
     return new Promise((resolve, reject) => {
         console.log('running for page', page + 1)
-        request(`${BASE_ROUTE}/${ROUTE_NUMBERS[stat]}/${ page ? `p${page}` : '' }`, (error, response, body) => {
+        request({
+            method: 'GET',
+            uri: `${BASE_ROUTE}/${STAT_INFO[stat].ROUTE_NUMBER}/${ page ? `p${page}` : '' }`,
+            forever: true
+        }, (error, response, body) => {
             if (error) {
                 console.log('error:', error);
                 resolve(players);
@@ -254,7 +225,8 @@ function getStatFor(stat, maxPages=5, players=[], page=null) {
             console.log('length', newPlayers.length);
             resolve({newPlayers, maxPages, stat, page: page ? page + 1 : 1});
         });
-    }).then(({ newPlayers, maxPages, stat, page }) => {
+    })
+    .then(({ newPlayers, maxPages, stat, page }) => {
         return (page > maxPages ? players : getStatFor(stat, maxPages, newPlayers, page))
     });
 }

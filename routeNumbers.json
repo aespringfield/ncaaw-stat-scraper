@@ -1,9 +1,72 @@
 {
-    "POINTS_PER_GAME": "102",
-    "ASSISTS_PER_GAME": "106",
-    "FIELD_GOAL_PERCENTAGE": "107",
-    "REBOUNDS_PER_GAME": "103",
-    "THREES_MADE": "1007",
-    "THREE_PERCENTAGE": "109",
-    "STEALS_PER_GAME": "105"
+    "POINTS": {
+        "ROUTE_NUMBER": "102",
+        "SUBSTATS": ["POINTS_PER_GAME", "TOTAL_POINTS"]
+    },
+    "TOTAL_POINTS": {
+        "STAT_ABBREV": "PTS",
+        "ANNA_COLUMN_NAME": "Total points",
+        "ANNA_COLUMN": "J",
+        "PARENT_STAT": "POINTS"
+    },
+    "POINTS_PER_GAME": {
+        "STAT_ABBREV": "PPG",
+        "ANNA_COLUMN_NAME": "Points per game",
+        "ANNA_COLUMN": "D",
+        "PARENT_STAT": "POINTS"
+    },
+    "ASSISTS_PER_GAME": {
+        "ROUTE_NUMBER": "106",
+        "STAT_ABBREV": "APG",
+        "ANNA_COLUMN": "I",
+        "ANNA_COLUMN_NAME": "Assists per game"
+    },
+    "FIELD_GOALS": {
+        "ROUTE_NUMBER": "107",
+        "SUBSTATS": ["FIELD_GOAL_PERCENTAGE", "FIELD_GOAL_ATTEMPTS"]
+    },
+    "FIELD_GOAL_PERCENTAGE": {
+        "STAT_ABBREV": "FG%",
+        "ANNA_COLUMN": "E",
+        "ANNA_COLUMN_NAME": "Field goal %",
+        "PARENT_STAT": "FIELD_GOALS"
+    },
+    "FIELD_GOAL_ATTEMPTS": {
+        "STAT_ABBREV": "FGA",
+        "ANNA_COLUMN": "K",
+        "ANNA_COLUMN_NAME": "Field goal attempts",
+        "PARENT_STAT": "FIELD_GOALS"
+    },
+    "REBOUNDS_PER_GAME": {
+        "ROUTE_NUMBER": "103",
+        "STAT_ABBREV": "RPG",
+        "ANNA_COLUMN": "H",
+        "ANNA_COLUMN_NAME": "Rebounds per game"
+    },
+    "THREES": {
+        "ROUTE_NUMBER": "109",
+        "SUBSTATS": ["THREES_MADE", "THREE_PERCENTAGE"]
+    },
+    "THREES_MADE": {
+        "STAT_ABBREV": "3FG",
+        "ANNA_COLUMN": "F",
+        "ANNA_COLUMN_NAME": "Threes made",
+        "PARENT_STAT": "THREES"
+    },
+    "THREE_PERCENTAGE": {
+        "STAT_ABBREV": "3FG%",
+        "ANNA_COLUMN": "G",
+        "ANNA_COLUMN_NAME": "Three %",
+        "PARENT_STAT": "THREES"
+    },
+    "STEALS_PER_GAME": {
+        "ROUTE_NUMBER": "105",
+        "STAT_ABBREV": "SPG"
+    },
+    "FREE_THROW_ATTEMPTS": {
+        "ROUTE_NUMBER": "1001",
+        "STAT_ABBREV": "FTA",
+        "ANNA_COLUMN": "L",
+        "ANNA_COLUMN_NAME": "FT attempts"
+    }
 }
