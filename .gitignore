@@ -3,3 +3,5 @@ node_modules
 .env
 token.json
 grabbedData.js
+cachedPlayers.json
+cachedSearchJSON.json
