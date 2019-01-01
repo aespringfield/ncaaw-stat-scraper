@@ -1,0 +1,14 @@
+{
+    "SOURCE": "HHS",
+    "STATS_TO_FETCH": [
+        "TOTAL_POINTS",
+        "POINTS_PER_GAME",
+        "FREE_THROW_ATTEMPTS",
+        "ASSISTS_PER_GAME",
+        "REBOUNDS_PER_GAME",
+        "THREE_PERCENTAGE",
+        "THREES_MADE",
+        "FIELD_GOAL_ATTEMPTS",
+        "FIELD_GOAL_PERCENTAGE"
+    ]
+}

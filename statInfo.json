@@ -1,7 +1,8 @@
 {
     "POINTS": {
         "ROUTE_NUMBER": "102",
-        "SUBSTATS": ["POINTS_PER_GAME", "TOTAL_POINTS"]
+        "SUBSTATS": ["POINTS_PER_GAME", "TOTAL_POINTS"],
+        "NCAA_MAX_PAGES": 10
     },
     "TOTAL_POINTS": {
         "STAT_ABBREV": "PTS",
@@ -23,7 +24,8 @@
     },
     "FIELD_GOALS": {
         "ROUTE_NUMBER": "107",
-        "SUBSTATS": ["FIELD_GOAL_PERCENTAGE", "FIELD_GOAL_ATTEMPTS"]
+        "SUBSTATS": ["FIELD_GOAL_PERCENTAGE", "FIELD_GOAL_ATTEMPTS"],
+        "NCAA_MAX_PAGES": 7
     },
     "FIELD_GOAL_PERCENTAGE": {
         "STAT_ABBREV": "FG%",

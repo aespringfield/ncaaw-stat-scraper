@@ -1,7 +1,7 @@
 const fs = require('fs');
 const request = require('request');
-const CACHED_PLAYERS_PATH = 'hhs/cachedPlayers.json';
-const CACHED_SEARCH_JSON_PATH = 'hhs/cachedSearchJSON.json';
+const CACHED_PLAYERS_PATH = 'sources/hhs/cachedPlayers.json';
+const CACHED_SEARCH_JSON_PATH = 'sources/hhs/cachedSearchJSON.json';
 const HOURS_BEFORE_RECACHE_SEARCH_JSON = 24;
 require('dotenv').config();
 
@@ -35,9 +35,16 @@ const requestSearchJSON = () => {
 }
 
 const findIdInSearchJSON = (name, searchJSONArray) => {
-    return searchJSONArray.find((item) => {
+    const playerEntry = searchJSONArray.find((item) => {
         return name === item.slice(16)
-    }).slice(0, 16);
+    })
+    
+    if (!playerEntry) {
+        console.log('No entry found for', name);
+        return;
+    }
+
+    return playerEntry.slice(0, 16);
 }
 
 // Check cache first to see if it's current, or make request & update cache if it's not
@@ -46,7 +53,7 @@ const getSearchJSON = () => {
         fs.readFile(CACHED_SEARCH_JSON_PATH, (err, contents) => {
             const cache = contents ? JSON.parse(contents) : contents;
 
-            if (cache && (Date.now().valueOf() - (new Date(cache.date)).valueOf() < HOURS_BEFORE_RECACHE_SEARCH_JSON * 60000)) {
+            if (cache && (Date.now().valueOf() - (new Date(cache.date)).valueOf() < HOURS_BEFORE_RECACHE_SEARCH_JSON * 3600000)) {
                 console.log('Got search JSON from cache');
                 resolve(cache.searchJSONArray);
             } else {
@@ -83,7 +90,10 @@ const getPlayerId = (name) => {
                 resolve(players[name]);
             } else {
                 getIdFromSearchJSON(name).then((id) => {
-                    addPlayerToCache(players, name, id);
+                    if (id) {
+                        addPlayerToCache(players, name, id);
+                    }
+
                     resolve(id);
                 });
             }
@@ -91,6 +101,6 @@ const getPlayerId = (name) => {
     });
 }
 
-getPlayerId('Marina Mabrey').then((id) => console.log(id))
+getPlayerId('Megan Gustafson').then((id) => console.log(id))
 
 module.exports = { getPlayerId };

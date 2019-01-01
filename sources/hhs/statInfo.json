@@ -1,0 +1,36 @@
+{
+    "POINTS_PER_GAME": {
+        "LABEL": "Points per Game"
+    },
+    "FIELD_GOAL_PERCENTAGE": {
+        "LABEL": "Field Goal %"
+    },
+    "EFG%": {
+        "LABEL": "Effective Field Goal %"
+    },
+    "ASSISTS_OVER_TURNOVERS": {
+        "LABEL": "Assists / Turnovers"
+    },
+    "TOTAL_POINTS": {
+        "LABEL": "Points",
+        "NOT_INCLUDE": "per"
+    },
+    "FREE_THROW_ATTEMPTS": {
+        "LABEL": "Free Throws Attempted"
+    },
+    "ASSISTS_PER_GAME": {
+        "LABEL": "Assists per Game"
+    },
+    "REBOUNDS_PER_GAME": {
+        "LABEL": "Total Rebs per Game"
+    },
+    "THREE_PERCENTAGE": {
+        "LABEL": "3 Point %"
+    },
+    "THREES_MADE": {
+        "LABEL": "3 Pointers Made"
+    },
+    "FIELD_GOAL_ATTEMPTS": {
+        "LABEL": "Field Goals Attempted"
+    }
+}

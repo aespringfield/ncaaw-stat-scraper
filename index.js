@@ -1,22 +1,27 @@
 const fs = require('fs');
 const _ = require('lodash');
-
 const { getSheets, listPlayers, setPlayerData, authorize } = require('./sheetsMethods');
-const { getStatFor } = require('./scraperMethods');
-
+const config = require('./config');
+const STATS_TO_FETCH = config.STATS_TO_FETCH;
+const SCRAPER_METHODS = {
+    NCAA: require(`./sources/ncaa/scraperMethods`).scrape,
+    HHS: require(`./sources/hhs/scraperMethods`).scrape
+};
+// const { grabbedData } = require('./grabbedData');
 const STAT_INFO = require('./statInfo');
-const STATS_TO_FETCH = require('./statsToFetch');
-const { grabbedData } = require('./grabbedData');
 
+populate(SCRAPER_METHODS[config.SOURCE]);
 
-
-readPlayers().then((players) => {
-    addStatsToPlayers(players, STATS_TO_FETCH)
-    .then((players) => {
-        console.log('players:', players)
-        writePlayers(players, STAT_INFO);
-    })
-})
+function populate(scraperMethod) {
+    readPlayers()
+        .then((players) => {
+            return scraperMethod(players, STATS_TO_FETCH);
+        })
+        .then((players) => {
+            console.log('players:', players)
+            writePlayers(players, STAT_INFO);
+        })
+}
 
 // writePlayers(grabbedData, STAT_INFO);
 
@@ -40,41 +45,6 @@ function writePlayers(players, stats) {
             const sheets = getSheets(auth);
             const sheetId = process.env.SENIORS_SHEET_ID;
             setPlayerData(sheets, sheetId, range, resource);
-        });
-    });
-}
-
-function addStatsToPlayers(players, stats) {
-    return new Promise((resolve, reject) => {
-        const { NAME: parentStat, MAX_PAGES, SUBSTATS } = stats[0];
-        resolve(addStatToPlayers(players, parentStat, MAX_PAGES, SUBSTATS));
-    }).then((players) => {
-        const statsLeft = stats.slice(1);
-        return statsLeft.length > 0 ? addStatsToPlayers(players, statsLeft) : players;
-    });
-}
-
-function addStatToPlayers(players, parentStat, maxPages, substats) {
-    return new Promise((resolve, reject) => {
-        console.log('Stat:', parentStat);
-        getStatFor(STAT_INFO[parentStat].ROUTE_NUMBER, maxPages).then((responsePlayers, error) => {
-            const newPlayers = players.map((player) => {
-                return responsePlayers.reduce((newPlayer, responsePlayer) => {
-                    if (responsePlayer.Name.trim() === player.name) {
-                        const stats = substats ? substats : [parentStat];
-                        stats.forEach((stat) => {
-                            newPlayer[stat] = responsePlayer[STAT_INFO[stat].STAT_ABBREV];
-                        });
-                    }
-                    return newPlayer;
-                }, {...player});
-            });
-            resolve(newPlayers);
-        })
-        .catch((error) => {
-            console.log('error', error);
-            resolve(addStatToPlayers(players, statName, maxPages))
-            // reject(error);
         });
     });
 }
