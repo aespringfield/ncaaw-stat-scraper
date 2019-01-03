@@ -1,9 +1,7 @@
 {
     "SOURCE": "HHS",
     "STATS_TO_FETCH": [
-        "USAGE"
-    ],
-    "OLD_STATS_TO_FETCH": [
+        "USAGE",
         "TOTAL_POINTS",
         "POINTS_PER_GAME",
         "FREE_THROW_ATTEMPTS",
@@ -12,9 +10,7 @@
         "THREE_PERCENTAGE",
         "THREES_MADE",
         "FIELD_GOAL_ATTEMPTS",
-        "FIELD_GOAL_PERCENTAGE"
-    ],
-    "NEW_STATS_TO_FETCH": [
+        "FIELD_GOAL_PERCENTAGE",
         "ASSISTS_OVER_TURNOVERS",
         "STEAL_RATE",
         "BLOCK_RATE",
