@@ -17,6 +17,6 @@
         "FOUL_RATE",
         "OFFENSIVE_REBOUNDING_RATE",
         "DEFENSIVE_REBOUNDING_RATE",
-        "USAGE_RATE"
+        "USAGE"
     ]
 }

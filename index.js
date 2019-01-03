@@ -14,7 +14,7 @@ populateFrom(config.SOURCE);
 
 function populateFrom(source) {
     const scrapeMethod = SCRAPER_METHODS[source];
-    const stats = availableStats(STATS_TO_FETCH);
+    const stats = availableStats(STATS_TO_FETCH, source);
 
     readPlayers()
         .then((players) => {
