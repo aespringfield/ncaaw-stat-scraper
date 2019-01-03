@@ -10,20 +10,29 @@ const SCRAPER_METHODS = {
 // const { grabbedData } = require('./grabbedData');
 const STAT_INFO = require('./statInfo');
 
-populate(SCRAPER_METHODS[config.SOURCE]);
+populateFrom(config.SOURCE);
 
-function populate(scraperMethod) {
+function populateFrom(source) {
+    const scrapeMethod = SCRAPER_METHODS[source];
+    const stats = availableStats(STATS_TO_FETCH);
+
     readPlayers()
         .then((players) => {
-            return scraperMethod(players, STATS_TO_FETCH);
+            return scrapeMethod(players, stats);
         })
         .then((players) => {
             console.log('players:', players)
-            writePlayers(players, STAT_INFO);
+            writePlayers(players, stats);
         })
 }
 
 // writePlayers(grabbedData, STAT_INFO);
+
+function availableStats(statList, source) {
+    return statList.filter((stat) => {
+        return STAT_INFO[stat][source];
+    });
+}
 
 function readPlayers() {
     return new Promise((resolve, reject) => {
@@ -49,19 +58,24 @@ function writePlayers(players, stats) {
     });
 }
 
-function buildSheetValues(players, statsInfo) {
-    const sortedStats = Object.entries(statsInfo)
-    .filter(([statName, statInfo]) => {
-        return statInfo.ANNA_COLUMN;
+function buildSheetValues(players, statsFound) {
+    const sortedStats = statsFound.map((stat) => {
+        return {
+            name: stat,
+            ...STAT_INFO[stat]
+        };
     })
-    .sort(([statNameA, statInfoA], [statNameB, statInfoB]) => {
-        return statInfoA.ANNA_COLUMN < statInfoB.ANNA_COLUMN ? -1 : 1;
+    .filter((stat) => {
+        return stat.ANNA_COLUMN;
+    })
+    .sort((statA, statB) => {
+        return statA.ANNA_COLUMN < statB.ANNA_COLUMN ? -1 : 1;
     });
 
-    const values = sortedStats.map(([statName, statInfo]) => {
-        return [statInfo.ANNA_COLUMN_NAME].concat(
+    const values = sortedStats.map((stat) => {
+        return [stat.ANNA_COLUMN_NAME].concat(
             players.map((player) => {
-                return player[statName] || null;
+                return player[stat.name] || null;
             })
         );
     });

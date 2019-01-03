@@ -101,6 +101,6 @@ const getPlayerId = (name) => {
     });
 }
 
-getPlayerId('Megan Gustafson').then((id) => console.log(id))
+// getPlayerId('Megan Gustafson').then((id) => console.log(id))
 
-module.exports = { getPlayerId };
+module.exports = { getPlayerId, getSearchJSON };

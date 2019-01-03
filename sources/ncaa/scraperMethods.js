@@ -10,7 +10,8 @@ function scrape(players, statList) {
 
 function transformStats(statList) {
     const { standalones, substats } = statList.reduce((memo, stat) => {
-        let parentStat = STAT_INFO[stat].PARENT_STAT;
+        let statInfo = STAT_INFO[stat].NCAA;
+        let parentStat = statInfo.PARENT_STAT;
         if (parentStat) {
             if (memo.substats[parentStat]) {
                 memo.substats[parentStat].SUBSTATS.push(stat);
@@ -18,13 +19,13 @@ function transformStats(statList) {
                 memo.substats[parentStat] = {
                     NAME: parentStat,
                     SUBSTATS: [stat],
-                    ...(STAT_INFO[parentStat].NCAA_MAX_PAGES && { MAX_PAGES: STAT_INFO[parentStat].NCAA_MAX_PAGES })
+                    ...(STAT_INFO[parentStat].NCAA.MAX_PAGES && { MAX_PAGES: STAT_INFO[parentStat].NCAA.MAX_PAGES })
                 };
             }
         } else {
             memo.standalones.push({
                 NAME: stat,
-                ...(STAT_INFO[stat].NCAA_MAX_PAGES && { MAX_PAGES: STAT_INFO[stat].NCAA_MAX_PAGES })
+                ...(statInfo.MAX_PAGES && { MAX_PAGES: statInfo.MAX_PAGES })
             });
         }
         return memo;
@@ -50,7 +51,8 @@ function addStatToPlayers(players, parentStat, maxPages, substats) {
                     if (responsePlayer.Name.trim() === player.name) {
                         const stats = substats ? substats : [parentStat];
                         stats.forEach((stat) => {
-                            newPlayer[stat] = responsePlayer[STAT_INFO[stat].STAT_ABBREV];
+                            let statInfo = STAT_INFO[stat].NCAA;
+                            newPlayer[stat] = responsePlayer[statInfo.LABEL];
                         });
                     }
                     return newPlayer;
