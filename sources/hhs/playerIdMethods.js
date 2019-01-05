@@ -15,6 +15,19 @@ const cacheSearchJSON = (searchJSONArray) => {
     })
 }
 
+const cachePlayers = (players) => {
+    fs.writeFile(CACHED_PLAYERS_PATH, JSON.stringify(players.reduce((playerObj, player) => {
+        playerObj[player.name] = player.id;
+        return playerObj;
+    }, {})), (err) => {
+        if (err) {
+            console.log(err)
+        }
+
+        console.log(`Cache updated to include ${name}`);
+    });
+}
+
 const requestSearchJSON = () => {
     return new Promise((resolve) => {
         request({
