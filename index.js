@@ -10,7 +10,7 @@ const SCRAPER_METHODS = {
 // const { grabbedData } = require('./grabbedData');
 const STAT_INFO = require('./statInfo');
 
-populateFrom(config.SOURCE);
+// populateFrom(config.SOURCE);
 
 function populateFrom(source) {
     const scrapeMethod = SCRAPER_METHODS[source];
@@ -80,7 +80,7 @@ function buildSheetValues(players, statsFound) {
         );
     });
     return {
-        range: `Sheet1!${sortedStats[0][1].ANNA_COLUMN}1:${_.last(sortedStats)[1].ANNA_COLUMN}${players.length + 1}`,
+        range: `Sheet1!${sortedStats[0].ANNA_COLUMN}1:${_.last(sortedStats).ANNA_COLUMN}${players.length + 1}`,
         resource: {
             "majorDimension": "COLUMNS",
             "values": values
