@@ -1,7 +1,6 @@
 {
     "SOURCE": "HHS",
     "STATS_TO_FETCH": [
-        "USAGE",
         "TOTAL_POINTS",
         "POINTS_PER_GAME",
         "FREE_THROW_ATTEMPTS",
