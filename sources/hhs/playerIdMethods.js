@@ -15,17 +15,14 @@ const cacheSearchJSON = (searchJSONArray) => {
     })
 }
 
-const cachePlayers = (players) => {
-    fs.writeFile(CACHED_PLAYERS_PATH, JSON.stringify(players.reduce((playerObj, player) => {
-        playerObj[player.name] = player.id;
-        return playerObj;
-    }, {})), (err) => {
+const cachePlayersHash = (playersHash) => {
+    fs.writeFile(CACHED_PLAYERS_PATH, JSON.stringify(playersHash), (err) => {
         if (err) {
-            console.log(err)
+            console.log('Error caching players:', err);
         }
 
-        console.log(`Cache updated to include ${name}`);
-    });
+        console.log('Cached players updated');
+    })
 }
 
 const requestSearchJSON = () => {
@@ -79,41 +76,44 @@ const getSearchJSON = () => {
     });
 }
 
-const addPlayerToCache = (players, name, id) => {
-    fs.writeFile(CACHED_PLAYERS_PATH, JSON.stringify({ ...players, [name]: id }), (err) => {
-        if (err) {
-            console.log(err)
-        }
-
-        console.log(`Cache updated to include ${name}`);
-    });
-}
-
-const getIdFromSearchJSON = (name) => {
-    return getSearchJSON().then((searchJSONArray) => {
-        return findIdInSearchJSON(name, searchJSONArray);
-    });
-}
-
-const getPlayerId = (name) => {
+const getPlayersHash = () => {
     return new Promise((resolve) => {
         fs.readFile(CACHED_PLAYERS_PATH, (err, contents) => {
-            const players = contents ? JSON.parse(contents) : {};
-            if (players[name]) {
-                resolve(players[name]);
-            } else {
-                getIdFromSearchJSON(name).then((id) => {
-                    if (id) {
-                        addPlayerToCache(players, name, id);
-                    }
-
-                    resolve(id);
-                });
-            }
+            resolve(contents ? JSON.parse(contents) : {});
         });
     });
 }
 
+const setupGetPlayerId = (playersHash) => {
+    return (player) => playersHash[player];
+}
+
+const addPlayersToCache = (players, playersHash) => {
+    return getSearchJSON()
+        .then((searchJSONArray) => {
+            const newPlayersHash = players.reduce((newPlayersHash, player) => {
+                return { ...newPlayersHash, [player]: findIdInSearchJSON(player, searchJSONArray) };
+            }, {});
+            cachePlayersHash(newPlayersHash);
+            return newPlayersHash;
+        });
+}
+
+const getPlayerIdFinder = (players) => {
+    // get cached players
+    return getPlayersHash()
+        .then((playersHash) => {
+            const hasUncachedPlayers = players.find((player) => {
+                return !playersHash[player];
+            });
+
+            return hasUncachedPlayers ? addPlayersToCache(players, playersHash) : Promise.resolve(playersHash);
+        })
+        .then((playersHash) => {
+            return setupGetPlayerId(playersHash);
+        })
+};
+
 // getPlayerId('Megan Gustafson').then((id) => console.log(id))
 
-module.exports = { getPlayerId, getSearchJSON };
+module.exports = { getPlayerIdFinder };
