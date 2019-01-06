@@ -44,7 +44,7 @@ function addStatsToPlayers(players, stats) {
 
 function addStatToPlayers(players, parentStat, maxPages, substats) {
     console.log('Stat:', parentStat);
-    return getStatFor(STAT_INFO[parentStat].ROUTE_NUMBER, maxPages)
+    return getStatFor(STAT_INFO[parentStat].NCAA.ROUTE_NUMBER, maxPages)
         .then((responsePlayers, error) => {
             const newPlayers = players.map((player) => {
                 return responsePlayers.reduce((newPlayer, responsePlayer) => {
