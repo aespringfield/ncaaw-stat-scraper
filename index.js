@@ -7,10 +7,10 @@ const SCRAPER_METHODS = {
     NCAA: require(`./sources/ncaa/scraperMethods`).scrape,
     HHS: require(`./sources/hhs/scraperMethods`).scrape
 };
-// const { grabbedData } = require('./grabbedData');
+const { grabbedData } = require('./grabbedData');
 const STAT_INFO = require('./statInfo');
 
-// populateFrom(config.SOURCE);
+populateFrom(config.SOURCE);
 
 function populateFrom(source) {
     const scrapeMethod = SCRAPER_METHODS[source];
@@ -26,7 +26,7 @@ function populateFrom(source) {
         })
 }
 
-// writePlayers(grabbedData, STAT_INFO);
+// writePlayers(grabbedData, availableStats(STATS_TO_FETCH, config.SOURCE));
 
 function availableStats(statList, source) {
     return statList.filter((stat) => {

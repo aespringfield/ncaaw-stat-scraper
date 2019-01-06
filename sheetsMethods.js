@@ -1,6 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
 const { google } = require('googleapis');
+const backoff = require('backoff');
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 // The file token.json stores the user's access and refresh tokens, and is
@@ -64,40 +65,67 @@ const getSheets = (auth, version='v4') => {
     return google.sheets({version, auth});
 }
 
+const requestWithBackoff = (requestMethod, args, callback) => {
+  const call = backoff.call(requestMethod, args, (err, res) => {
+    console.log('Num retries: ' + call.getNumRetries());
+    if (err) {
+        console.log('Error: ' + err.message);
+    } else {
+        callback(res);
+    }
+  });
+
+  call.retryIf(function(err) { return !!err; });
+  call.setStrategy(new backoff.ExponentialStrategy());
+  call.failAfter(10);
+  call.start();
+}
+
 const listPlayers = (sheets) => {
-    return new Promise((resolve, reject) => {
-      sheets.spreadsheets.values.get({
-          spreadsheetId: SHEET_ID,
-          range: 'Sheet1!A2:A33',
-        }, (err, res) => {
-          if (err) return console.log('The API returned an error: ' + err);
-          const rows = res.data.values;
-          if (rows.length) {
-            // Get senior info
-            const players = [];
-            rows.map((row) => {
-              players.push({
-                  name: row[0].trim()
+    return new Promise((resolve) => {
+        requestWithBackoff(
+          sheets.spreadsheets.values.get,
+          {
+            spreadsheetId: SHEET_ID,
+            range: 'Sheet1!A2:A33',
+          },
+          (res) => {
+            if (!res) {
+              return;
+            }
+
+            const rows = res.data.values;
+            if (rows.length) {
+              console.log(`Got ${rows.length} players from sheet`);
+              // Get senior info
+              const players = [];
+              rows.map((row) => {
+                players.push({
+                    name: row[0].trim()
+                });
               });
-            });
-            resolve(players);
-          } else {
-            console.log('No data found.');
+              resolve(players);
+            } else {
+              console.log('No data found.');
+            }
           }
-        });
+        )
     });
   }
 
-  const setPlayerData = (sheets, sheetId, range, resource) => {
-    sheets.spreadsheets.values.update({
-        spreadsheetId: sheetId,
-        valueInputOption: 'USER_ENTERED',
-        range,
-        resource
-    }, (err, res) => {
-        if (err) return console.log('The API returned an error on update: ' + err);
-        console.log('response data', res.data);
-    });
+const setPlayerData = (sheets, sheetId, range, resource) => {
+  requestWithBackoff(
+    sheets.spreadsheets.values.update,
+    {
+      spreadsheetId: sheetId,
+      valueInputOption: 'USER_ENTERED',
+      range,
+      resource
+    },
+    (res) => {
+      console.log('response data', res.data);
+    }
+  );
 }
 
 module.exports = { getSheets, listPlayers, setPlayerData, authorize };
