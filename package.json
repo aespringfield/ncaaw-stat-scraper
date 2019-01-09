@@ -2,10 +2,13 @@
   "name": "ncaaw-seniors-watchlist",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "/bin",
+  "bin": {
+    "populate": "bin/populate.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "populate": "node run.js"
+    "populate": "node populate.js"
   },
   "author": "",
   "license": "ISC",
