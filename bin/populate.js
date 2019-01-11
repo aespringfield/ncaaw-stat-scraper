@@ -1,19 +1,12 @@
 #!/usr/bin/env node
 
-// const program = require('commander');
+const program = require('commander');
 const { populateFrom } = require('../lib/populateMethods');
 const config = require('../lib/config');
 
-// program
-//     .version('0.0.1')
-//     .command('populate [source]')
-//     .action((source) => {
-//         console.log(source || 'Heyyy')
-//     })
-    
-// program.parse(process.argv)
+program
+    .version('0.1.0')
+    .option('-s, --source [site]', 'Source for scraping')
+    .parse(process.argv);
 
-
-const [source] = process.argv.slice(2)
-
-populateFrom(source.toUpperCase() || config.SOURCE);
+populateFrom(program.source.toUpperCase() || config.SOURCE);
