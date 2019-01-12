@@ -9,4 +9,15 @@ program
     .option('-s, --source [site]', 'Source for scraping')
     .parse(process.argv);
 
-populateFrom(program.source.toUpperCase() || config.SOURCE);
+ program
+    .version('0.1.0')
+    .command('populate [source]')
+    .action((source) => {
+        populateFrom(source.toUpperCase() || config.SOURCE);
+    })
+
+program.parse(process.argv);
+
+if (program.source) {
+    populateFrom(program.source.toUpperCase() || config.SOURCE);
+}
