@@ -40,6 +40,13 @@
             "LABEL": "Assists per Game"
         }
     },
+    "TURNOVERS_PER_GAME": {
+        "ANNA_COLUMN": "J",
+        "ANNA_COLUMN_NAME": "Turnovers per game",
+        "HHS": {
+            "LABEL": "Turnovers per Game"
+        }
+    },
     "FIELD_GOALS": {
         "NCAA": {
             "ROUTE_NUMBER": "107",
@@ -60,7 +67,7 @@
         }
     },
     "FIELD_GOAL_ATTEMPTS": {
-        "ANNA_COLUMN": "K",
+        "ANNA_COLUMN": "L",
         "ANNA_COLUMN_NAME": "Field goal attempts",
         "NCAA": {
             "LABEL": "FGA",
@@ -110,13 +117,18 @@
         }
     },
     "STEALS_PER_GAME": {
+        "ANNA_COLUMN": "U",
+        "ANNA_COLUMN_NAME": "Steals per game",
         "NCAA": {
             "ROUTE_NUMBER": "105",
             "LABEL": "SPG"
+        },
+        "HHS": {
+            "LABEL": "Steals per Game"
         }
     },
     "FREE_THROW_ATTEMPTS": {
-        "ANNA_COLUMN": "L",
+        "ANNA_COLUMN": "M",
         "ANNA_COLUMN_NAME": "FT attempts",
         "NCAA": {
             "ROUTE_NUMBER": "1001",
@@ -127,57 +139,73 @@
         }
     },
     "ASSISTS_OVER_TURNOVERS": {
-        "ANNA_COLUMN": "S",
+        "ANNA_COLUMN": "T",
         "ANNA_COLUMN_NAME": "Assists/Turnovers",
         "HHS": {
             "LABEL": "Assists / Turnovers"
         }
     },
     "STEAL_RATE": {
-        "ANNA_COLUMN": "T",
+        "ANNA_COLUMN": "V",
         "ANNA_COLUMN_NAME": "Steal rate",
         "HHS": {
             "LABEL": "Steal Rate"
         }
     },
     "BLOCK_RATE": {
-        "ANNA_COLUMN": "U",
+        "ANNA_COLUMN": "W",
         "ANNA_COLUMN_NAME": "Block rate",
         "HHS": {
             "LABEL": "Block Rate"
         }
     },
+    "FOULS_PER_GAME": {
+        "ANNA_COLUMN": "X",
+        "ANNA_COLUMN_NAME": "Fouls per game",
+        "HHS": {
+            "LABEL": "Foul Rate"
+        }
+    },
     "FOUL_RATE": {
-        "ANNA_COLUMN": "V",
+        "ANNA_COLUMN": "Y",
         "ANNA_COLUMN_NAME": "Foul rate",
         "HHS": {
             "LABEL": "Foul Rate"
         }
     },
     "OFFENSIVE_REBOUNDING_RATE": {
-        "ANNA_COLUMN": "W",
+        "ANNA_COLUMN": "Z",
         "ANNA_COLUMN_NAME": "Off reb rate",
         "HHS": {
             "LABEL": "Off Reb Rate"
         }
     },
     "DEFENSIVE_REBOUNDING_RATE": {
-        "ANNA_COLUMN": "X",
+        "ANNA_COLUMN": "ZA",
         "ANNA_COLUMN_NAME": "Def reb rate",
         "HHS": {
             "LABEL": "Def Reb Rate"
         }
     },
     "USAGE": {
-        "ANNA_COLUMN": "Y",
+        "ANNA_COLUMN": "ZB",
         "ANNA_COLUMN_NAME": "Usage",
         "HHS": {
             "LABEL": "Usage Rate"
         }
     },
     "EFG%": {
+        "ANNA_COLUMN": "ZC",
+        "ANNA_COLUMN_NAME": "eFG%",
         "HHS": {
             "LABEL": "Effective Field Goal %"
+        }
+    },
+    "MINUTES_PER_GAME": {
+        "ANNA_COLUMN": "ZD",
+        "ANNA_COLUMN_NAME": "Minutes per game",
+        "HHS": {
+            "LABEL": "Minutes per Game"
         }
     }
 }
