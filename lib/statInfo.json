@@ -152,57 +152,64 @@
             "LABEL": "Steal Rate"
         }
     },
-    "BLOCK_RATE": {
+    "BLOCKS_PER_GAME": {
         "ANNA_COLUMN": "W",
+        "ANNA_COLUMN_NAME": "Blocks per game",
+        "HHS": {
+            "LABEL": "Blocks per Game"
+        }
+    },
+    "BLOCK_RATE": {
+        "ANNA_COLUMN": "X",
         "ANNA_COLUMN_NAME": "Block rate",
         "HHS": {
             "LABEL": "Block Rate"
         }
     },
     "FOULS_PER_GAME": {
-        "ANNA_COLUMN": "X",
+        "ANNA_COLUMN": "Y",
         "ANNA_COLUMN_NAME": "Fouls per game",
         "HHS": {
-            "LABEL": "Foul Rate"
+            "LABEL": "Fouls per Game"
         }
     },
     "FOUL_RATE": {
-        "ANNA_COLUMN": "Y",
+        "ANNA_COLUMN": "Z",
         "ANNA_COLUMN_NAME": "Foul rate",
         "HHS": {
             "LABEL": "Foul Rate"
         }
     },
     "OFFENSIVE_REBOUNDING_RATE": {
-        "ANNA_COLUMN": "Z",
+        "ANNA_COLUMN": "ZA",
         "ANNA_COLUMN_NAME": "Off reb rate",
         "HHS": {
             "LABEL": "Off Reb Rate"
         }
     },
     "DEFENSIVE_REBOUNDING_RATE": {
-        "ANNA_COLUMN": "ZA",
+        "ANNA_COLUMN": "ZB",
         "ANNA_COLUMN_NAME": "Def reb rate",
         "HHS": {
             "LABEL": "Def Reb Rate"
         }
     },
     "USAGE": {
-        "ANNA_COLUMN": "ZB",
+        "ANNA_COLUMN": "ZC",
         "ANNA_COLUMN_NAME": "Usage",
         "HHS": {
             "LABEL": "Usage Rate"
         }
     },
     "EFG%": {
-        "ANNA_COLUMN": "ZC",
+        "ANNA_COLUMN": "ZD",
         "ANNA_COLUMN_NAME": "eFG%",
         "HHS": {
             "LABEL": "Effective Field Goal %"
         }
     },
     "MINUTES_PER_GAME": {
-        "ANNA_COLUMN": "ZD",
+        "ANNA_COLUMN": "ZE",
         "ANNA_COLUMN_NAME": "Minutes per game",
         "HHS": {
             "LABEL": "Minutes per Game"

@@ -1,5 +1,6 @@
 {
     "SOURCE": "HHS",
+    "YEAR": "2019",
     "STATS_TO_FETCH": [
         "TOTAL_POINTS",
         "POINTS_PER_GAME",
@@ -14,6 +15,7 @@
         "ASSISTS_OVER_TURNOVERS",
         "STEALS_PER_GAME",
         "STEAL_RATE",
+        "BLOCKS_PER_GAME",
         "BLOCK_RATE",
         "FOULS_PER_GAME",
         "FOUL_RATE",

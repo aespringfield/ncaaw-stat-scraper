@@ -6,17 +6,19 @@ const config = require('../lib/config');
 
 program
     .version('0.1.0')
-    .option('-s, --source [site]', 'Source for scraping')
+    .option('-r, --rookies', 'Populate the rookie sheet instead')
+    .option('-s, --source [site]', 'Set source [site]', 'hhs')
     .parse(process.argv);
 
- program
-    .version('0.1.0')
-    .command('populate [source]')
-    .action((source) => {
-        populateFrom(source.toUpperCase() || config.SOURCE);
-    })
+//  program
+//     .version('0.1.0')
+//     .command('populate [source]')
+//     .action((source) => {
+//         console.log('second one')
+//         // populateFrom(source.toUpperCase() || config.SOURCE);
+//     })
 
-program.parse(process.argv);
+// program.parse(process.argv);
 
 if (program.source) {
     populateFrom(program.source.toUpperCase() || config.SOURCE);

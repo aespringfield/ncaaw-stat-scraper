@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "populate": "node bin/populate.js -s"
+    "populate": "node bin/populate.js"
   },
   "author": "",
   "license": "ISC",
