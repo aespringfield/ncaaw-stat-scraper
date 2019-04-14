@@ -138,6 +138,13 @@
             "LABEL": "Free Throws Attempted"
         }
     },
+    "FREE_THROW_PERCENTAGE": {
+        "ANNA_COLUMN": "MA",
+        "ANNA_COLUMN_NAME": "FT %",
+        "HHS": {
+            "LABEL": "Free Throw %"
+        }
+    },
     "ASSISTS_OVER_TURNOVERS": {
         "ANNA_COLUMN": "T",
         "ANNA_COLUMN_NAME": "Assists/Turnovers",
