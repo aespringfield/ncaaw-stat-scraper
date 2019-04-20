@@ -221,5 +221,32 @@
         "HHS": {
             "LABEL": "Minutes per Game"
         }
+    },
+    "WNBA_PIE": {
+        "ANNA_COLUMN_NAME": "WNBA PIE"
+    },
+    "WNBA_MPG": {
+        "ANNA_COLUMN_NAME": "WNBA minutes per game"
+    },
+    "WNBA_PPG": {
+        "ANNA_COLUMN_NAME": "WNBA PPG"
+    },
+    "WNBA_3%": {
+        "ANNA_COLUMN_NAME": "WNBA 3P%"
+    },
+    "WNBA_EFG%": {
+        "ANNA_COLUMN_NAME": "WNBA eFG%"
+    },
+    "WNBA_TS%": {
+        "ANNA_COLUMN_NAME": "WNBA TS%"
+    },
+    "WNBA_REB%": {
+        "ANNA_COLUMN_NAME": "WNBA REB%"
+    },
+    "WNBA_AST_TO": {
+        "ANNA_COLUMN_NAME": "WNBA AST/TO"
+    },
+    "WNBA_USAGE%": {
+        "ANNA_COLUMN_NAME": "WNBA usage %"
     }
 }

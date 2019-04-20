@@ -7,7 +7,7 @@ const config = require('../lib/config');
 program
     .version('0.1.0')
     .option('-r, --rookies', 'Populate the rookie sheet instead')
-    .option('-s, --source [site]', 'Set source [site]', 'hhs')
+    .option('-s, --source [site]', 'Set source [site]')
     .parse(process.argv);
 
 //  program
@@ -20,6 +20,4 @@ program
 
 // program.parse(process.argv);
 
-if (program.source) {
-    populateFrom(program.source.toUpperCase() || config.SOURCE);
-}
+populateFrom(program.source ? program.source.toUpperCase() : config.SOURCE);
