@@ -248,5 +248,29 @@
     },
     "WNBA_USAGE%": {
         "ANNA_COLUMN_NAME": "WNBA usage %"
+    },
+    "WNBA_ATTEMPTS": {
+        "ANNA_COLUMN_NAME": "WNBA attempts"
+    },
+    "WNBA_MAKES": {
+        "ANNA_COLUMN_NAME": "WNBA makes"
+    },
+    "WNBA_STEALS_PER_GAME": {
+        "ANNA_COLUMN_NAME": "WNBA SPG"
+    },
+    "WNBA_ASSISTS_PER_GAME": {
+        "ANNA_COLUMN_NAME": "WNBA APG"
+    },
+    "WNBA_BLOCKS_PER_GAME": {
+        "ANNA_COLUMN_NAME": "WNBA BPG"
+    },
+    "WNBA_REBOUNDS_PER_GAME": {
+        "ANNA_COLUMN_NAME": "WNBA RPG"
+    },
+    "WNBA_TURNOVERS_PER_GAME": {
+        "ANNA_COLUMN_NAME": "WNBA TPG"
+    },
+    "WNBA_GAMES_PLAYED": {
+        "ANNA_COLUMN_NAME": "WNBA GP"
     }
 }
