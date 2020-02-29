@@ -5,3 +5,5 @@ token.json
 grabbedData.js
 cachedPlayers.json
 cachedSearchJSON.json
+tmp/
+**/cachedPlayerStats*

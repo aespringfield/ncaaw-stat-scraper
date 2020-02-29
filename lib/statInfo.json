@@ -1,4 +1,10 @@
 {
+    "GAMES_PLAYED": {
+        "ANNA_COLUMN_NAME": "Games played",
+        "HHS": {
+            "LABEL": "Games Played"
+        }
+    },
     "POINTS": {
         "NCAA": {
             "ROUTE_NUMBER": "102",
@@ -223,31 +229,102 @@
         }
     },
     "WNBA_PIE": {
-        "ANNA_COLUMN_NAME": "WNBA PIE"
+        "ANNA_COLUMN_NAME": "WNBA PIE",
+        "WNBA": {
+            "TYPE": "ADVANCED",
+            "LABEL": "PIE"
+        }
+    },
+    "WNBA_OFF_RATING": {
+        "ANNA_COLUMN_NAME": "WNBA off rtg",
+        "WNBA": {
+            "TYPE": "ADVANCED",
+            "LABEL": "OFF_RATING"
+        }
+    },
+    "WNBA_DEF_RATING": {
+        "ANNA_COLUMN_NAME": "WNBA def rtg",
+        "WNBA": {
+            "TYPE": "ADVANCED",
+            "LABEL": "DEF_RATING"
+        }
+    },
+    "WNBA_NET_RATING": {
+        "ANNA_COLUMN_NAME": "WNBA net rtg",
+        "WNBA": {
+            "TYPE": "ADVANCED",
+            "LABEL": "NET_RATING"
+        }
     },
     "WNBA_MPG": {
-        "ANNA_COLUMN_NAME": "WNBA minutes per game"
+        "ANNA_COLUMN_NAME": "WNBA minutes per game",
+        "WNBA": {
+            "LABEL": "MIN",
+            "TYPE": "BASIC"
+        }
     },
     "WNBA_PPG": {
-        "ANNA_COLUMN_NAME": "WNBA PPG"
+        "ANNA_COLUMN_NAME": "WNBA PPG",
+        "WNBA": {
+            "LABEL": "PTS",
+            "TYPE": "BASIC"
+        }
     },
     "WNBA_3%": {
-        "ANNA_COLUMN_NAME": "WNBA 3P%"
+        "ANNA_COLUMN_NAME": "WNBA 3P%",
+        "WNBA": {
+            "LABEL": "FG3_PCT",
+            "TYPE": "BASIC"
+        }
     },
     "WNBA_EFG%": {
-        "ANNA_COLUMN_NAME": "WNBA eFG%"
+        "ANNA_COLUMN_NAME": "WNBA eFG%",
+        "WNBA": {
+            "LABEL": "EFG_PCT",
+            "TYPE": "ADVANCED"
+        }
     },
     "WNBA_TS%": {
-        "ANNA_COLUMN_NAME": "WNBA TS%"
+        "ANNA_COLUMN_NAME": "WNBA TS%",
+        "WNBA": {
+            "LABEL": "TS_PCT",
+            "TYPE": "ADVANCED"
+        }
+    },
+    "WNBA_OREB%": {
+        "ANNA_COLUMN_NAME": "WNBA OREB%",
+        "WNBA": {
+            "LABEL": "OREB_PCT",
+            "TYPE": "ADVANCED"
+        }
+    },
+    "WNBA_DREB%": {
+        "ANNA_COLUMN_NAME": "WNBA DREB%",
+        "WNBA": {
+            "LABEL": "DREB_PCT",
+            "TYPE": "ADVANCED"
+        }
     },
     "WNBA_REB%": {
-        "ANNA_COLUMN_NAME": "WNBA REB%"
+        "ANNA_COLUMN_NAME": "WNBA REB%",
+        "WNBA": {
+            "LABEL": "REB_PCT",
+            "TYPE": "ADVANCED"
+        }
     },
     "WNBA_AST_TO": {
-        "ANNA_COLUMN_NAME": "WNBA AST/TO"
+        "ANNA_COLUMN_NAME": "WNBA AST/TO",
+        "WNBA": {
+            "LABEL": "AST_TO",
+            "TYPE": "ADVANCED"
+        }
     },
     "WNBA_USAGE%": {
-        "ANNA_COLUMN_NAME": "WNBA usage %"
+        "ANNA_COLUMN_NAME": "WNBA usage %",
+        "WNBA": {
+            "LABEL": "USG_PCT",
+            "TYPE": "ADVANCED"
+        }
     },
     "WNBA_ATTEMPTS": {
         "ANNA_COLUMN_NAME": "WNBA attempts"
@@ -256,21 +333,45 @@
         "ANNA_COLUMN_NAME": "WNBA makes"
     },
     "WNBA_STEALS_PER_GAME": {
-        "ANNA_COLUMN_NAME": "WNBA SPG"
+        "ANNA_COLUMN_NAME": "WNBA SPG",
+        "WNBA": {
+            "LABEL": "STL",
+            "TYPE": "BASIC"
+        }
     },
     "WNBA_ASSISTS_PER_GAME": {
-        "ANNA_COLUMN_NAME": "WNBA APG"
+        "ANNA_COLUMN_NAME": "WNBA APG",
+        "WNBA": {
+            "LABEL": "AST",
+            "TYPE": "BASIC"
+        }
     },
     "WNBA_BLOCKS_PER_GAME": {
-        "ANNA_COLUMN_NAME": "WNBA BPG"
+        "ANNA_COLUMN_NAME": "WNBA BPG",
+        "WNBA": {
+            "LABEL": "BLK",
+            "TYPE": "BASIC"
+        }
     },
     "WNBA_REBOUNDS_PER_GAME": {
-        "ANNA_COLUMN_NAME": "WNBA RPG"
+        "ANNA_COLUMN_NAME": "WNBA RPG",
+        "WNBA": {
+            "LABEL": "REB",
+            "TYPE": "BASIC"
+        }
     },
     "WNBA_TURNOVERS_PER_GAME": {
-        "ANNA_COLUMN_NAME": "WNBA TPG"
+        "ANNA_COLUMN_NAME": "WNBA TPG",
+        "WNBA": {
+            "LABEL": "TOV",
+            "TYPE": "BASIC"
+        }
     },
     "WNBA_GAMES_PLAYED": {
-        "ANNA_COLUMN_NAME": "WNBA GP"
+        "ANNA_COLUMN_NAME": "WNBA GP",
+        "WNBA": {
+            "LABEL": "GP",
+            "TYPE": "BASIC"
+        }
     }
 }
