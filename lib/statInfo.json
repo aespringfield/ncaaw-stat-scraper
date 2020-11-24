@@ -5,6 +5,18 @@
             "LABEL": "Games Played"
         }
     },
+    "HS_RATING": {
+        "ANNA_COLUMN_NAME": "HS rating",
+        "HG": {
+            "LABEL": "GRADE"
+        }
+    },
+    "HS_RANK": {
+        "ANNA_COLUMN_NAME": "HS rank",
+        "HG": {
+            "LABEL": "RK"
+        }
+    },
     "POINTS": {
         "NCAA": {
             "ROUTE_NUMBER": "102",
