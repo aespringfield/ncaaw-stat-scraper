@@ -2,7 +2,7 @@
     "GAMES_PLAYED": {
         "ANNA_COLUMN_NAME": "Games played",
         "HHS": {
-            "LABEL": "Games Played"
+            "LABEL": "G"
         }
     },
     "HS_RATING": {
@@ -32,7 +32,7 @@
             "PARENT_STAT": "POINTS"
         },
         "HHS": {
-            "LABEL": "Points",
+            "LABEL": "PTS",
             "NOT_INCLUDE": "per"
         }
     },
@@ -44,7 +44,7 @@
             "PARENT_STAT": "POINTS"
         },
         "HHS": {
-            "LABEL": "Points per Game"
+            "LABEL": "PTS"
         }
     },
     "ASSISTS_PER_GAME": {
@@ -55,14 +55,14 @@
             "LABEL": "APG"
         },
         "HHS": {
-            "LABEL": "Assists per Game"
+            "LABEL": "AST"
         }
     },
     "TURNOVERS_PER_GAME": {
         "ANNA_COLUMN": "J",
         "ANNA_COLUMN_NAME": "Turnovers per game",
         "HHS": {
-            "LABEL": "Turnovers per Game"
+            "LABEL": "TOV"
         }
     },
     "FIELD_GOALS": {
@@ -81,7 +81,7 @@
             "PARENT_STAT": "FIELD_GOALS"
         },
         "HHS": {
-            "LABEL": "Field Goal %"
+            "LABEL": "FG%"
         }
     },
     "FIELD_GOAL_ATTEMPTS": {
@@ -92,7 +92,7 @@
             "PARENT_STAT": "FIELD_GOALS"
         },
         "HHS": {
-            "LABEL": "Field Goals Attempted"
+            "LABEL": "FGA"
         }
     },
     "REBOUNDS_PER_GAME": {
@@ -103,7 +103,7 @@
             "LABEL": "RPG"
         },
         "HHS": {
-            "LABEL": "Total Rebs per Game"
+            "LABEL": "TRB"
         }
     },
     "THREES": {
@@ -120,7 +120,7 @@
             "PARENT_STAT": "THREES"
         },
         "HHS": {
-            "LABEL": "3 Pointers Made"
+            "LABEL": "3PM"
         }
     },
     "THREE_PERCENTAGE": {
@@ -131,7 +131,7 @@
             "PARENT_STAT": "THREES"
         },
         "HHS": {
-            "LABEL": "3 Point %"
+            "LABEL": "3P%"
         }
     },
     "STEALS_PER_GAME": {
@@ -142,7 +142,7 @@
             "LABEL": "SPG"
         },
         "HHS": {
-            "LABEL": "Steals per Game"
+            "LABEL": "STL"
         }
     },
     "FREE_THROW_ATTEMPTS": {
@@ -153,91 +153,91 @@
             "LABEL": "FTA"
         },
         "HHS" : {
-            "LABEL": "Free Throws Attempted"
+            "LABEL": "FTA"
         }
     },
     "FREE_THROW_PERCENTAGE": {
         "ANNA_COLUMN": "MA",
         "ANNA_COLUMN_NAME": "FT %",
         "HHS": {
-            "LABEL": "Free Throw %"
+            "LABEL": "FT%"
         }
     },
     "ASSISTS_OVER_TURNOVERS": {
         "ANNA_COLUMN": "T",
         "ANNA_COLUMN_NAME": "Assists/Turnovers",
         "HHS": {
-            "LABEL": "Assists / Turnovers"
+            "LABEL": "AST/TOV"
         }
     },
     "STEAL_RATE": {
         "ANNA_COLUMN": "V",
         "ANNA_COLUMN_NAME": "Steal rate",
         "HHS": {
-            "LABEL": "Steal Rate"
+            "LABEL": "STL%"
         }
     },
     "BLOCKS_PER_GAME": {
         "ANNA_COLUMN": "W",
         "ANNA_COLUMN_NAME": "Blocks per game",
         "HHS": {
-            "LABEL": "Blocks per Game"
+            "LABEL": "BLK"
         }
     },
     "BLOCK_RATE": {
         "ANNA_COLUMN": "X",
         "ANNA_COLUMN_NAME": "Block rate",
         "HHS": {
-            "LABEL": "Block Rate"
+            "LABEL": "BLK%"
         }
     },
     "FOULS_PER_GAME": {
         "ANNA_COLUMN": "Y",
         "ANNA_COLUMN_NAME": "Fouls per game",
         "HHS": {
-            "LABEL": "Fouls per Game"
+            "LABEL": "PF"
         }
     },
     "FOUL_RATE": {
         "ANNA_COLUMN": "Z",
         "ANNA_COLUMN_NAME": "Foul rate",
         "HHS": {
-            "LABEL": "Foul Rate"
+            "LABEL": "PF%"
         }
     },
     "OFFENSIVE_REBOUNDING_RATE": {
         "ANNA_COLUMN": "ZA",
         "ANNA_COLUMN_NAME": "Off reb rate",
         "HHS": {
-            "LABEL": "Off Reb Rate"
+            "LABEL": "ORB%"
         }
     },
     "DEFENSIVE_REBOUNDING_RATE": {
         "ANNA_COLUMN": "ZB",
         "ANNA_COLUMN_NAME": "Def reb rate",
         "HHS": {
-            "LABEL": "Def Reb Rate"
+            "LABEL": "DRB%"
         }
     },
     "USAGE": {
         "ANNA_COLUMN": "ZC",
         "ANNA_COLUMN_NAME": "Usage",
         "HHS": {
-            "LABEL": "Usage Rate"
+            "LABEL": "USG%"
         }
     },
     "EFG%": {
         "ANNA_COLUMN": "ZD",
         "ANNA_COLUMN_NAME": "eFG%",
         "HHS": {
-            "LABEL": "Effective Field Goal %"
+            "LABEL": "EFG%"
         }
     },
     "MINUTES_PER_GAME": {
         "ANNA_COLUMN": "ZE",
         "ANNA_COLUMN_NAME": "Minutes per game",
         "HHS": {
-            "LABEL": "Minutes per Game"
+            "LABEL": "MIN"
         }
     },
     "WNBA_PIE": {
