@@ -22,5 +22,7 @@
     "DEFENSIVE_REBOUNDING_RATE",
     "USAGE",
     "EFG%",
-    "MINUTES_PER_GAME"
+    "MINUTES_PER_GAME",
+    "SCHOOL",
+    "TURNOVER_RATE"
 ]

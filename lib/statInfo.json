@@ -1,4 +1,10 @@
 {
+    "SCHOOL": {
+        "ANNA_COLUMN_NAME": "School",
+        "HHS": {
+            "LABEL": "team"
+        }
+    },
     "GAMES_PLAYED": {
         "ANNA_COLUMN_NAME": "Games played",
         "HHS": {
@@ -63,6 +69,13 @@
         "ANNA_COLUMN_NAME": "Turnovers per game",
         "HHS": {
             "LABEL": "TOV"
+        }
+    },
+    "TURNOVER_RATE": {
+        "ANNA_COLUMN": "AA",
+        "ANNA_COLUMN_NAME": "Turnover rate",
+        "HHS": {
+            "LABEL": "TOV%"
         }
     },
     "FIELD_GOALS": {
@@ -251,21 +264,21 @@
         "ANNA_COLUMN_NAME": "WNBA off rtg",
         "WNBA": {
             "TYPE": "ADVANCED",
-            "LABEL": "OFF_RATING"
+            "LABEL": "OFFRTG"
         }
     },
     "WNBA_DEF_RATING": {
         "ANNA_COLUMN_NAME": "WNBA def rtg",
         "WNBA": {
             "TYPE": "ADVANCED",
-            "LABEL": "DEF_RATING"
+            "LABEL": "DEFRTG"
         }
     },
     "WNBA_NET_RATING": {
         "ANNA_COLUMN_NAME": "WNBA net rtg",
         "WNBA": {
             "TYPE": "ADVANCED",
-            "LABEL": "NET_RATING"
+            "LABEL": "NETRTG"
         }
     },
     "WNBA_MPG": {
@@ -292,49 +305,49 @@
     "WNBA_EFG%": {
         "ANNA_COLUMN_NAME": "WNBA eFG%",
         "WNBA": {
-            "LABEL": "EFG_PCT",
+            "LABEL": "EFG%",
             "TYPE": "ADVANCED"
         }
     },
     "WNBA_TS%": {
         "ANNA_COLUMN_NAME": "WNBA TS%",
         "WNBA": {
-            "LABEL": "TS_PCT",
+            "LABEL": "TS%",
             "TYPE": "ADVANCED"
         }
     },
     "WNBA_OREB%": {
         "ANNA_COLUMN_NAME": "WNBA OREB%",
         "WNBA": {
-            "LABEL": "OREB_PCT",
+            "LABEL": "OREB%",
             "TYPE": "ADVANCED"
         }
     },
     "WNBA_DREB%": {
         "ANNA_COLUMN_NAME": "WNBA DREB%",
         "WNBA": {
-            "LABEL": "DREB_PCT",
+            "LABEL": "DREB%",
             "TYPE": "ADVANCED"
         }
     },
     "WNBA_REB%": {
         "ANNA_COLUMN_NAME": "WNBA REB%",
         "WNBA": {
-            "LABEL": "REB_PCT",
+            "LABEL": "REB%",
             "TYPE": "ADVANCED"
         }
     },
     "WNBA_AST_TO": {
         "ANNA_COLUMN_NAME": "WNBA AST/TO",
         "WNBA": {
-            "LABEL": "AST_TO",
+            "LABEL": "AST/TO",
             "TYPE": "ADVANCED"
         }
     },
     "WNBA_USAGE%": {
         "ANNA_COLUMN_NAME": "WNBA usage %",
         "WNBA": {
-            "LABEL": "USG_PCT",
+            "LABEL": "USG%",
             "TYPE": "ADVANCED"
         }
     },
