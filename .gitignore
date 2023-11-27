@@ -7,3 +7,5 @@ cachedPlayers.json
 cachedSearchJSON.json
 tmp/
 **/cachedPlayerStats*
+.DS_Store
+src/.DS_Store
