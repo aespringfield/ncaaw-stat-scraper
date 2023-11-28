@@ -40,8 +40,22 @@ const navigateToPlayerPage = async (page, playerName) => {
   await page.waitForSelector(`text/${playerName} Statistics`)
 }
 
+const isInSeason = (year) => {
+  const currentDate = new Date();
+  const yearAsNumber = parseInt(year, 10);
+
+  // Create a date for the beginning of November of the previous year
+  const startOfRange = new Date(yearAsNumber - 1, 10, 1); // November 1st of the previous year
+
+  // Create a date for the end of April of the year
+  const endOfRange = new Date(yearAsNumber, 3, 30); // April 30th of the year
+
+  // Check if the current date falls within the range
+  return currentDate >= startOfRange && currentDate <= endOfRange;
+}
+
 const getStatsFromCache = (name, stats, year) => {
-  const cacheValidHours = new Date().getFullYear().toString() === year ? 2 : 10000000
+  const cacheValidHours = isInSeason(year) ? 2 : 10000000
 
   return getCachedPlayerStats(name, getCachedPlayerStatsPath(name, `${__dirname}/cachedPlayerStats-${year}`), cacheValidHours).then((cachedPlayerStats) => {
     if (!cachedPlayerStats) {
