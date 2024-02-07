@@ -23,7 +23,7 @@
     "jsdom": "^13.0.0",
     "lodash": "^4.17.15",
     "node-fetch": "^2.6.0",
-    "puppeteer": "^19.4.1",
+    "puppeteer": "21.6.1",
     "request": "^2.88.0",
     "request-to-curl": "^0.1.5"
   },

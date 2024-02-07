@@ -23,10 +23,10 @@ const navigateToPlayerPage = async (page, playerName) => {
   const playerPageLinkSelector = `text/${playerName} | NCAA`
   await page.waitForSelector(playerPageLinkSelector)
 
-  if (['Haley Jones', 'Emily Kiser', 'Aaliyah Moore', 'Brittany Davis', 'Paige Robinson', 'Kiki Rice', 'Kayla McPherson'].includes(playerName)) { // Differentiate from the other Haley Jones, who shows up first
+  if (['Haley Jones', 'Emily Kiser', 'Aaliyah Moore', 'Brittany Davis', 'Paige Robinson', 'Chelsea Gray', 'Tayler Hill', "Jasmine James", "Kennedy Brown"].includes(playerName)) { // Differentiate from the other Haley Jones, who shows up first
     const playerPageLinks = await page.$$(".form-group-player-team-search > [role='listbox'] > .dropdown-item")
     await playerPageLinks[1].click()
-  } else if (playerName === 'Jenna Clark' || playerName === 'Gabby Gregory') {
+  } else if (['Jenna Clark', 'Gabby Gregory', 'Taylor Jones'].includes(playerName)) {
     const playerPageLinks = await page.$$(".form-group-player-team-search > [role='listbox'] > .dropdown-item")
     await playerPageLinks[2].click()
   } else if (playerName === 'Raven Johnson') {
@@ -176,7 +176,14 @@ const scrapeStatsForPlayer = async (page, playerName, stats, year) => {
 const runInBrowser = async (url, callback, opts={}) => {
   const browser = await puppeteer.launch(opts)
   const page = await browser.newPage()
-  await page.goto(url)
+  await page.goto(url, {
+    // networkidle2 is fired when there are no more than 2 network connections for 500 ms,
+    // as compared with networkidle0, which is fired when there are 0 network connections for 500ms.
+    // In this case, networkidle2 works better as a check bc there may be a video streaming
+    // as well as ads loading or trackers pinging
+    waitUntil: "networkidle2",
+    timeout: 60000
+  });
   await page.setViewport({ width: 1366, height: 768})
   const results = await callback(page)
   await browser.close()

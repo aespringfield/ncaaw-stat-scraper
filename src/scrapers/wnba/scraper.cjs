@@ -112,6 +112,8 @@ const tweakName = (playerName) => {
       return 'Azurá Stevens'
     case 'AD':
       return 'Asia (AD) Durr'
+    case 'Dorka Juhasz':
+      return 'Dorka Juhász'
     default:
       return playerName
   }

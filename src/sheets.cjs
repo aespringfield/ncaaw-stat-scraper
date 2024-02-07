@@ -23,14 +23,16 @@ const CLASS_2018_SHEET_NAME = '2018 draft class';
 const CLASS_2016_SHEET_NAME = '2016 draft class';
 const CLASS_2017_SHEET_NAME = '2017 draft class';
 const CLASS_2015_SHEET_NAME = '2015 draft class';
+const CLASS_2014_SHEET_NAME = '2014 draft class';
+const CLASS_2013_SHEET_NAME = '2013 draft class';
 const PLAYERS_SHEET = 'All players';
 const SOPHOMORE_PLAYERS_SHEET = 'All players - sophomore';
 const TWO_YEAR_VET_PLAYERS_SHEET = 'All players - 2 year vet';
 const THREE_YEAR_VET_PLAYERS_SHEET = 'All players - 3 year vet';
 const RANGES = {
-  PLAYER_NAMES: 'A2:225',
+  PLAYER_NAMES: 'A2:257',
   HEADINGS: 'A1:BZ1',
-  ALL_VALUES: 'A1:BZ225'
+  ALL_VALUES: 'A1:BZ257'
 }
 
 /**
@@ -120,6 +122,10 @@ const getSheetName = () => {
   }
 
   switch(config.DRAFT_YEAR) {
+    case '2013':
+      return CLASS_2013_SHEET_NAME;
+    case '2014':
+      return CLASS_2014_SHEET_NAME;
     case '2015':
       return CLASS_2015_SHEET_NAME;
     case '2016':
