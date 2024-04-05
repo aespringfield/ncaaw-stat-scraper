@@ -29,7 +29,7 @@ const navigateToPlayerPage = async (page, playerName) => {
   } else if (['Jenna Clark', 'Gabby Gregory', 'Taylor Jones'].includes(playerName)) {
     const playerPageLinks = await page.$$(".form-group-player-team-search > [role='listbox'] > .dropdown-item")
     await playerPageLinks[2].click()
-  } else if (playerName === 'Raven Johnson') {
+  } else if (['Raven Johnson', 'Jenna Johnson'].includes(playerName)) {
     const playerPageLinks = await page.$$(".form-group-player-team-search > [role='listbox'] > .dropdown-item")
     await playerPageLinks[3].click()
   }
