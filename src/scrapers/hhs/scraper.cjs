@@ -23,7 +23,7 @@ const navigateToPlayerPage = async (page, playerName) => {
   const playerPageLinkSelector = `text/${playerName} | NCAA`
   await page.waitForSelector(playerPageLinkSelector)
 
-  if (['Haley Jones', 'Emily Kiser', 'Aaliyah Moore', 'Brittany Davis', 'Paige Robinson', 'Chelsea Gray', 'Tayler Hill', "Jasmine James", "Kennedy Brown"].includes(playerName)) { // Differentiate from the other Haley Jones, who shows up first
+  if (['Haley Jones', 'Emily Kiser', 'Aaliyah Moore', 'Brittany Davis', 'Paige Robinson', 'Chelsea Gray', 'Tayler Hill', "Jasmine James", "Kennedy Brown", "Reigan Richardson"].includes(playerName)) { // Differentiate from the other Haley Jones, who shows up first
     const playerPageLinks = await page.$$(".form-group-player-team-search > [role='listbox'] > .dropdown-item")
     await playerPageLinks[1].click()
   } else if (['Jenna Clark', 'Gabby Gregory', 'Taylor Jones'].includes(playerName)) {
